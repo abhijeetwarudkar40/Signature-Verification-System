@@ -121,7 +121,7 @@ npm --version
 ### 1. Get the repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/abhijeetwarudkar40/Signature-Verification-System
 cd SignatureVerification
 ```
 
@@ -329,11 +329,3 @@ Confirm that the correct writer or registered user is selected. Test on a repres
 - Add model version management and clearer evaluation reports.
 - Expand automated tests for registration, training, verification, and database operations.
 - Add authentication, authorization, and deployment hardening.
-
-## License
-
-No license is specified in this README. Add a `LICENSE` file before public distribution and verify the redistribution terms of any datasets or third-party assets.
-
----
-
-**SignaVerify** — a signature verification prototype combining image processing, machine learning, and a web interface.
