@@ -1,27 +1,24 @@
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb
-
-# Dataset
-dataset/cedar/
-
-# Models
-models/*.pkl
-
-# Results
-results/*.csv
-
-# Database
-database/*.db
 
 # Python
 __pycache__/
 *.py[cod]
-
-# Virtual Environment
-venv/
 .venv/
+venv/
 
-# IDE
-.vscode/
-.idea/
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Frontend dependencies and builds
+frontend/node_modules/
+frontend/.output/
+frontend/dist/
+
+# User data and uploaded signatures
+user_data/
+
+# Local database files
+*.db
+*.sqlite
+*.sqlite3

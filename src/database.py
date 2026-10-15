@@ -1,7 +1,6 @@
 import sqlite3
 
-from config import DATABASE_PATH
-
+from .config import DATABASE_PATH
 
 class Database:
 
@@ -33,6 +32,8 @@ class Database:
         """)
 
         self.connection.commit()
+
+        
     def user_exists(self, username):
 
         self.cursor.execute("""
@@ -53,7 +54,9 @@ class Database:
 
         self.connection.commit()
 
-    def update_model(self, username, model_path):
+        return self.cursor.lastrowid
+
+    def update_model_path(self, username, model_path):
 
         self.cursor.execute("""
             UPDATE users
@@ -66,7 +69,12 @@ class Database:
     def get_user(self, username):
 
         self.cursor.execute("""
-            SELECT *
+            SELECT
+                id,
+                username,
+                full_name,
+                model_path,
+                created_at
             FROM users
             WHERE username = ?
         """, (username,))
@@ -76,8 +84,14 @@ class Database:
     def get_all_users(self):
 
         self.cursor.execute("""
-            SELECT *
+            SELECT
+                id,
+                username,
+                full_name,
+                model_path,
+                created_at
             FROM users
+            ORDER BY username
         """)
 
         return self.cursor.fetchall()

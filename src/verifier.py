@@ -1,7 +1,10 @@
 import joblib
 import numpy as np
 
-from src.config import MODEL_DIR
+from src.config import (
+    CEDAR_MODELS_DIR,
+    USER_MODELS_DIR,
+)
 from src.preprocessing import SignaturePreprocessor
 from src.feature_extractor import FeatureExtractor
 
@@ -16,9 +19,9 @@ class SignatureVerifier:
         self.model = None
         self.writer_id = None
 
-    def load_model(self, writer_id):
+    def load_cedar_model(self, writer_id):
 
-        model_path = MODEL_DIR / f"writer_{writer_id}.pkl"
+        model_path = CEDAR_MODELS_DIR / f"writer_{writer_id}.pkl"
 
         if not model_path.exists():
             raise FileNotFoundError(
@@ -27,7 +30,18 @@ class SignatureVerifier:
 
         self.model = joblib.load(model_path)
         self.writer_id = writer_id
+    def load_user_model(self, username):
 
+        model_path = USER_MODELS_DIR / f"{username}.pkl"
+
+        if not model_path.exists():
+            raise FileNotFoundError(
+                f"No trained model found for user '{username}'."
+            )
+
+        self.model = joblib.load(model_path)
+        self.writer_id = username
+    
     def extract_features(self, image_path):
 
         image, _ = self.preprocessor.process(str(image_path))
